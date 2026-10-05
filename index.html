@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rudranil Mondal | Learning Facilitator & Trainer</title>
+  <style>
+    :root {
+      --primary: #1E40AF;
+      --primary-hover: #1D4ED8;
+      --primary-light: #EFF6FF;
+      --primary-border: #BFDBFE;
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+      --bg-light: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --border-color: #E2E8F0;
+      --radius: 10px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text-dark);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    header {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Hero & About Section */
+    .hero-about {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text {
+      color: #334155;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .philosophy-box {
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 1.25rem;
+      border-radius: 4px;
+      margin-top: 1.5rem;
+    }
+
+    .philosophy-box h4 {
+      color: var(--primary);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Catalog Header Controls */
+    .catalog-header {
+      margin-bottom: 2rem;
+    }
+
+    .catalog-title {
+      font-size: 1.8rem;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .catalog-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .search-filter-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .search-filter-bar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      max-width: 400px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-dark);
+    }
+
+    .pill:hover, .pill.active {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    /* Workshop Cards Grid */
+    .workshop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .workshop-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .workshop-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .card-category {
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .contents-preview {
+      margin-bottom: 1.25rem;
+      background: var(--bg-light);
+      padding: 0.75rem;
+      border-radius: 6px;
+    }
+
+    .contents-preview-title {
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: var(--text-dark);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+    }
+
+    .contents-preview-list {
+      list-style: none;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+
+    .contents-preview-list li {
+      margin-bottom: 0.25rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .contents-preview-list li::before {
+      content: "•";
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .card-btn {
+      width: 100%;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      padding: 0.65rem;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-align: center;
+    }
+
+    .card-btn:hover {
+      background: var(--primary);
+      color: #FFFFFF;
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #FFFFFF;
+      border-radius: var(--radius);
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .modal-category {
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-title {
+      font-size: 1.6rem;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-section-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 0.3rem;
+    }
+
+    .modal-list {
+      list-style-type: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-list li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      color: #334155;
+    }
+
+    .modal-list li::before {
+      content: "✓";
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .modal-cta-btn {
+      flex: 1;
+      background: var(--primary);
+      color: #FFFFFF;
+      padding: 0.75rem;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .modal-cta-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-title {
+      font-size: 1.6rem;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      background: var(--bg-light);
+      padding: 1.25rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .contact-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-value a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .contact-value a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+      background: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo-text">Rudranil Mondal</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#catalog">Facilitation Topics</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- About Section -->
+    <section id="about" class="hero-about">
+      <span class="hero-badge">Learning Facilitator & Student Leader</span>
+      <h1 class="hero-title">Rudranil Mondal</h1>
+      <p class="hero-subtitle">B.Sc. in Agricultural Economics | MS Candidate in Rural Development at GAU</p>
+      
+      <p class="about-text">
+        My background combines academic economics research, campus tech leadership, and youth program management. During my studies, I completed a research internship in the Agricultural Economics Section at the Bangladesh Rice Research Institute (BRRI), gaining practical experience in field survey design, farm economics data collection, and report writing.
+      </p>
+      
+      <p class="about-text">
+        Alongside my studies, I served as the founding Convenor, General Secretary, and Advisor of the IT Society at Gazipur Agricultural University (GAU), where I led and coordinated over 14 events engaging more than 7,500 students. I have also served as Campus Director for the Hult Prize at GAU (recognized among the Top 25% OnCampus Programs in the region) and as On-Campus Coordinator for the Hult Prize Bangladesh national team, supporting onboarding across 73+ campuses nationwide. Additionally, I am a co-author of <em>EasyBio Botany</em> and <em>EasyBio Zoology</em>, designed to assist students preparing for university admissions.
+      </p>
+
+      <p class="about-text">
+        I am a young, continuously learning facilitator with practical experience and useful knowledge, and I would be happy to contribute through training, workshops, and peer-learning sessions.
+      </p>
+
+      <div class="philosophy-box">
+        <h4>Facilitation Philosophy</h4>
+        <p class="about-text" style="margin-bottom:0; font-size: 0.95rem;">
+          My facilitation approach is grounded in peer-to-peer learning, practical trial-and-error, and hands-on skill-building. Rather than lecturing as an expert, I approach every session as a collaborative space where participants learn step-by-step through structured guides, live demonstrations, and practical exercises. My goal is to make digital tools, legal requirements, and essential career skills approachable, clear, and actionable for students, campus leaders, and early-stage entrepreneurs.
+        </p>
+      </div>
+    </section>
+
+    <!-- Facilitation Topics Catalog -->
+    <section id="catalog" class="catalog-header">
+      <h2 class="catalog-title">Facilitation Topics & Session Contents</h2>
+      <p class="catalog-subtitle">Explore interactive workshops, learning modules, and practical sessions available for your campus, organization, or community group.</p>
+
+      <div class="search-filter-bar">
+        <div class="search-box">
+          <input type="text" id="searchInput" class="search-input" placeholder="Search sessions or topics...">
+        </div>
+        <div class="category-pills" id="categoryPills">
+          <button class="pill active" data-category="All">All Topics</button>
+          <button class="pill" data-category="Digital Skills & Productivity">Digital Skills</button>
+          <button class="pill" data-category="Career & Professional Development">Career & Dev</button>
+          <button class="pill" data-category="Digital Safety & Responsible Internet">Digital Safety</button>
+          <button class="pill" data-category="Entrepreneurship & Business">Entrepreneurship</button>
+          <button class="pill" data-category="Leadership & Student Development">Leadership</button>
+          <button class="pill" data-category="Academic & Research">Academic & Research</button>
+        </div>
+      </div>
+
+      <div class="workshop-grid" id="workshopGrid">
+        <!-- Javascript renders workshop cards here -->
+      </div>
+    </section>
+
+    <!-- Contact & Collaboration Section -->
+    <section id="contact" class="contact-section">
+      <h2 class="contact-title">Contact & Collaboration</h2>
+      <p class="contact-subtitle">I am always happy to connect with universities, student clubs, youth organizations, NGOs, and community programs to facilitate workshops, learning sessions, or seminars.</p>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-label">Primary Email</div>
+          <div class="contact-value"><a href="mailto:rudranill.official@gmail.com">rudranill.official@gmail.com</a></div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-label">Academic Email</div>
+          <div class="contact-value"><a href="mailto:rudra5973@stu.gau.edu.com">rudra5973@stu.gau.edu.com</a></div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-label">LinkedIn Profile</div>
+          <div class="contact-value"><a href="https://linkedin.com/in/rudranil-mondal" target="_blank">linkedin.com/in/rudranil-mondal</a></div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-label">Personal Website</div>
+          <div class="contact-value"><a href="https://sites.google.com/view/rudranill" target="_blank">sites.google.com/view/rudranill</a></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Modal View for Detailed Contents -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-category" id="modalCategory">Category</div>
+      <h2 class="modal-title" id="modalTitle">Session Title</h2>
+      <p class="modal-desc" id="modalDesc">Short description of the session goes here.</p>
+
+      <div class="modal-section-title">Detailed Contents & Key Topics</div>
+      <ul class="modal-list" id="modalTopics">
+        <!-- List items inserted dynamically -->
+      </ul>
+
+      <div class="modal-actions">
+        <a href="#contact" class="modal-cta-btn" id="modalInviteBtn">Request This Session</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Rudranil Mondal. Built for peer learning and educational support.</p>
+  </footer>
+
+  <script>
+    const workshops = [
+      {
+        id: "design-101",
+        category: "Digital Skills & Productivity",
+        title: "Design 101",
+        description: "An introductory session on creating simple, clean, and attractive visual designs for everyday and social media use.",
+        topics: [
+          "Basic principles of good design",
+          "Using color, fonts, balance, contrast, and alignment",
+          "Creating visually consistent social media content",
+          "A simple process for developing a design from idea to final output"
+        ]
+      },
+      {
+        id: "search-effectively",
+        category: "Digital Skills & Productivity",
+        title: "How to Search Effectively",
+        description: "An introductory guide to finding useful and reliable information online without wasting time.",
+        topics: [
+          "How to search more effectively",
+          "Using search techniques and operators",
+          "Finding and checking reliable sources",
+          "Useful approaches for academic and professional research"
+        ]
+      },
+      {
+        id: "email-tricks",
+        category: "Digital Skills & Productivity",
+        title: "Email Tricks",
+        description: "A practical session on using email more efficiently for study, work, and everyday communication.",
+        topics: [
+          "Organizing and managing an inbox",
+          "Scheduling and snoozing emails",
+          "Using labels and email templates",
+          "Useful Gmail features for saving time and improving productivity"
+        ]
+      },
+      {
+        id: "ai-everyday",
+        category: "Digital Skills & Productivity",
+        title: "AI Tools for Everyday Use",
+        description: "An introduction to using AI tools as practical assistants for study, work, research, and everyday tasks.",
+        topics: [
+          "AI tools for research and information gathering",
+          "Summarizing, writing, note-taking, and idea generation",
+          "Using AI for productivity and content creation",
+          "Understanding AI limitations and using AI responsibly"
+        ]
+      },
+      {
+        id: "excel-data-cleaning",
+        category: "Digital Skills & Productivity",
+        title: "Data Cleaning in Excel Session",
+        description: "A practical introduction to making messy Excel data cleaner, more organized, and easier to use.",
+        topics: [
+          "Finding and removing duplicate or missing data",
+          "Cleaning and standardizing text",
+          "Organizing categories and basic coding",
+          "Useful Excel techniques for preparing data for analysis"
+        ]
+      },
+      {
+        id: "excel-small-business",
+        category: "Digital Skills & Productivity",
+        title: "Excel for Small Businesses",
+        description: "An introduction to using Excel for managing common small-business activities and records.",
+        topics: [
+          "Tracking sales and expenses",
+          "Basic Profit & Loss calculations",
+          "Managing inventory and customer information",
+          "Creating invoices, charts, and simple reports"
+        ]
+      },
+      {
+        id: "linkedin-optimization",
+        category: "Career & Professional Development",
+        title: "LinkedIn Profile Optimization",
+        description: "A practical guide to presenting yourself professionally on LinkedIn and building a stronger online professional identity.",
+        topics: [
+          "Creating a professional profile",
+          "Writing an effective headline and About section",
+          "Presenting education, experience, projects, and skills",
+          "Showcasing achievements, volunteering, and recommendations"
+        ]
+      },
+      {
+        id: "cv-ats",
+        category: "Career & Professional Development",
+        title: "CV Writing & ATS Awareness",
+        description: "An introductory session on creating a clear CV that is easier for both recruiters and Applicant Tracking Systems (ATS) to read.",
+        topics: [
+          "Basic structure of a good CV",
+          "Understanding how ATS works",
+          "Using relevant keywords and appropriate formatting",
+          "Common CV mistakes and how to tailor a CV for different opportunities"
+        ]
+      },
+      {
+        id: "presentation-guide",
+        category: "Career & Professional Development",
+        title: "Good Presentation Guide",
+        description: "A practical session on preparing and delivering presentations in a clearer and more confident way.",
+        topics: [
+          "Understanding the audience and purpose",
+          "Organizing content and structuring slides",
+          "Basic principles of effective slide design",
+          "Presentation delivery, preparation, and public speaking tips"
+        ]
+      },
+      {
+        id: "cybersecurity-basic",
+        category: "Digital Safety & Responsible Internet",
+        title: "Basic Cybersecurity Practices",
+        description: "An easy introduction to everyday habits that can help people stay safer online.",
+        topics: [
+          "Creating and managing stronger passwords",
+          "Using Two-Factor Authentication (2FA)",
+          "Recognizing phishing and common online threats",
+          "Safe browsing, software updates, and data backup"
+        ]
+      },
+      {
+        id: "fact-checking",
+        category: "Digital Safety & Responsible Internet",
+        title: "Fact Checking Guideline",
+        description: "An introduction to checking whether online information, images, and claims are trustworthy before believing or sharing them.",
+        topics: [
+          "Understanding misinformation and fake news",
+          "Basic fact-checking approaches",
+          "Reverse image search and simple verification tools",
+          "Better search practices and responsible information sharing"
+        ]
+      },
+      {
+        id: "social-media-awareness",
+        category: "Digital Safety & Responsible Internet",
+        title: "Social Media Awareness",
+        description: "A discussion on using social media in a safer, healthier, and more responsible way.",
+        topics: [
+          "Benefits and risks of social media",
+          "Digital footprints and online identity",
+          "Privacy and personal information",
+          "Misinformation, cyberbullying, and healthy digital habits"
+        ]
+      },
+      {
+        id: "social-media-cyber-law",
+        category: "Digital Safety & Responsible Internet",
+        title: "Social Media Etiquette & Cyber Law 2025",
+        description: "An awareness session on responsible online communication, social media behavior, and basic legal considerations in Bangladesh.",
+        topics: [
+          "Good manners and responsible communication online",
+          "Privacy and personal identity",
+          "What to consider before posting or sharing content",
+          "Basic awareness of Bangladesh's Cyber Security Ordinance 2025"
+        ]
+      },
+      {
+        id: "pitch-deck",
+        category: "Entrepreneurship & Business",
+        title: "Startup Pitch Deck",
+        description: "An introduction to presenting a business idea clearly and convincingly, especially for competitions, programs, or potential supporters.",
+        topics: [
+          "Identifying the problem and presenting the solution",
+          "Understanding customers and market opportunities",
+          "Business model and competitive advantage",
+          "Team, financial needs, and implementation plans"
+        ]
+      },
+      {
+        id: "business-startup-bd",
+        category: "Entrepreneurship & Business",
+        title: "Business Startup in Bangladesh",
+        description: "A practical introduction to the basic steps and considerations involved in starting a business in Bangladesh.",
+        topics: [
+          "Understanding a business idea and target customers",
+          "Basic business models and revenue planning",
+          "Company registration, trade license, TIN, and VAT",
+          "Basic funding opportunities and business compliance"
+        ]
+      },
+      {
+        id: "investing-intro",
+        category: "Entrepreneurship & Business",
+        title: "Introduction to Investing",
+        description: "An introductory discussion for beginners who want to understand the basic ideas behind personal investing.",
+        topics: [
+          "Basic investment concepts",
+          "Stocks, bonds, mutual funds, ETFs, FDs, and other instruments",
+          "Understanding risk and return",
+          "Common beginner mistakes and responsible investment practices"
+        ]
+      },
+      {
+        id: "club-leadership",
+        category: "Leadership & Student Development",
+        title: "Enhanced Student Club Leadership",
+        description: "A practical session on leading student organizations, working with teams, and creating a more active and effective club environment.",
+        topics: [
+          "Understanding leadership and team roles",
+          "Planning and managing club activities",
+          "Engaging and motivating volunteers",
+          "Communication, teamwork, and handling conflicts"
+        ]
+      },
+      {
+        id: "scientific-poster",
+        category: "Academic & Research",
+        title: "Scientific Poster Design",
+        description: "An introduction to presenting research in a clear, attractive, and easy-to-understand academic poster.",
+        topics: [
+          "Organizing research into a clear poster structure",
+          "Presenting methods, results, and findings visually",
+          "Choosing suitable charts, fonts, and layouts",
+          "Improving readability and avoiding overcrowded designs"
+        ]
+      }
+    ];
+
+    let currentCategory = 'All';
+    let searchQuery = '';
+
+    const workshopGrid = document.getElementById('workshopGrid');
+    const searchInput = document.getElementById('searchInput');
+    const categoryPills = document.getElementById('categoryPills');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalClose = document.getElementById('modalClose');
+
+    function renderWorkshops() {
+      workshopGrid.innerHTML = '';
+
+      const filtered = workshops.filter(item => {
+        const matchesCategory = currentCategory === 'All' || item.category === currentCategory;
+        const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                              item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              item.topics.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        workshopGrid.innerHTML = '<p style="grid-column: 1/-1; color: var(--text-muted); text-align: center; padding: 2rem;">No matching session topics found.</p>';
+        return;
+      }
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'workshop-card';
+        
+        const previewTopics = item.topics.slice(0, 2).map(t => `<li>${t}</li>`).join('');
+
+        card.innerHTML = `
+          <div>
+            <div class="card-category">${item.category}</div>
+            <h3 class="card-title">${item.title}</h3>
+            <p class="card-desc">${item.description}</p>
+            <div class="contents-preview">
+              <div class="contents-preview-title">Contents Highlight</div>
+              <ul class="contents-preview-list">
+                ${previewTopics}
+              </ul>
+            </div>
+          </div>
+          <button class="card-btn" onclick="openModal('${item.id}')">View Full Session Contents</button>
+        `;
+        workshopGrid.appendChild(card);
+      });
+    }
+
+    function openModal(id) {
+      const item = workshops.find(w => w.id === id);
+      if (!item) return;
+
+      document.getElementById('modalCategory').textContent = item.category;
+      document.getElementById('modalTitle').textContent = item.title;
+      document.getElementById('modalDesc').textContent = item.description;
+
+      const topicsList = document.getElementById('modalTopics');
+      topicsList.innerHTML = item.topics.map(t => `<li>${t}</li>`).join('');
+
+      modalOverlay.classList.add('active');
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('active');
+    }
+
+    // Event Listeners
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderWorkshops();
+    });
+
+    categoryPills.addEventListener('click', (e) => {
+      if (e.target.classList.contains('pill')) {
+        document.querySelectorAll('.pill').forEach(btn => btn.classList.remove('active'));
+        e.target.classList.add('active');
+        currentCategory = e.target.getAttribute('data-category');
+        renderWorkshops();
+      }
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+
+    document.getElementById('modalInviteBtn').addEventListener('click', closeModal);
+
+    // Initial Render
+    renderWorkshops();
+  </script>
+</body>
+</html>
